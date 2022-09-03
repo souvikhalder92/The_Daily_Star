@@ -43,10 +43,10 @@ const setAllCategory = (categorys) =>{
       found.innerHTML = '';
       const newsDiv1 = document.createElement('div');
       newsDiv1.innerHTML = `
-      <h5>${length ? length : 'No'} News found </h5>
+      <h5>${length ? length : 'No'} News Found </h5>
       `;
       found.appendChild(newsDiv1);
-      const s = data.sort((s1,s2) => s1.total_view - s2.total_view);
+      const s = data.sort((s1,s2) => s2.total_view - s1.total_view);
        for(const news of data){
      
      
@@ -64,7 +64,7 @@ const setAllCategory = (categorys) =>{
      <h1 class="h4">${news.author.name ? news.author.name : 'No author'}</h1>
      <p>${news.author.published_date ? news.author.published_date : 'No Publish Date'}</p>
      </div>
-     <p class="ms-4"><i class="fa-solid fa-eye me-2"></i>${news.total_view ? news.total_view : 'No View' }M</p>
+     <p class="ms-4"><i class="fa-solid fa-eye me-2"></i>${news.total_view ? news.total_view : 'No View' }</p>
      <button onclick="detailNews('${news._id}')" type="button" class="mx-auto me-2 btn btn-secondary"  data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-arrow-right"></i></button>
     </div>
  
@@ -113,7 +113,9 @@ const displayPhoneDetails = (data) =>{
      <p>${data.details}</p>
      <h4 class="text-muted">Author Name : ${data.author.name ? data.author.name : 'No author'}</h4>
      <p class="text-muted">Release Date : ${data.author.published_date ? data.author.published_date : 'No Publish Date'}</p>
-     <p class="text-muted">Views : ${data.total_view ? data.total_view : 'No View' }M</p>
+     <p class="text-muted">Views : ${data.total_view ? data.total_view : 'No View' }</p>
+     <p class="text-muted">Ratings : ${data.rating.number ? data.rating.number  : 'No Ratings' }</p>
+     <p class="text-muted">Rating Badge : ${data.rating.badge ? data.rating.badge  : 'No Badge' }</p>
   `
   
   
