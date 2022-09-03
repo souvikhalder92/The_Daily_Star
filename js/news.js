@@ -63,8 +63,8 @@ const setAllCategory = (categorys) =>{
      <h1 class="h4">${news.author.name ? news.author.name : 'No author'}</h1>
      <p>${news.author.published_date ? news.author.published_date : 'No Publish Date'}</p>
      </div>
-     <p class="m-4"><i class="fa-solid fa-eye ms-1"></i>${news.total_view ? news.total_view : 'No View' }</p>
-     <button onclick="detailNews('${news._id}')" class="me-2 mb-2 btn bg-secondary text-white w-50 h-25 text-center mt-5">See Details</button>
+     <p class="mt-5"><i class="fa-solid fa-eye"></i>${news.total_view ? news.total_view : 'No View' }</p>
+     <button onclick="detailNews('${news._id}')" href="#" class="me-1 mb-2 btn bg-secondary text-white w-50 h-25 text-center my-auto" data-bs-toggle="modal" data-bs-target="#exampleModal">Show Details</button>
      </div>
      
     </div>
@@ -97,9 +97,17 @@ const detailNews = (news) =>{
 
 
 const displayPhoneDetails = (data) =>{
-  //console.log(data);
-  const modelTitle = document.getElementById('exampleModel');
-  console.log(modelTitle);
+  console.log(data);
+  const modelTitle = document.getElementById('newsDetailsLabel');
+  modelTitle.innerText = data.title;
+  const newsDetails = document.getElementById('news-details');
+  newsDetails.innerHTML = `
+  <img src = "${data.image_url}" class="w-75">
+     <p>${data.details}</p>
+     <h4 class="text-muted">Author Name : ${data.author.name ? data.author.name : 'No author'}</h4>
+     <p class="text-muted">Release Date : ${data.author.published_date ? data.author.published_date : 'No Publish Date'}</p>
+ 
+  `
   
   
  
