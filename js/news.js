@@ -7,7 +7,7 @@ const loadAllCategories = async() =>{
     
 }
 const setAllCategory = (categorys) =>{
-    //console.log(data);
+    //console.log(categorys);
   
     const allCategory = document.getElementById('all-category');
    
@@ -26,6 +26,7 @@ const setAllCategory = (categorys) =>{
       }
 
       const loadNews = (category_id) =>{
+       
         togglespinner(true);
         const url = `https://openapi.programming-hero.com/api/news/category/${category_id}`
         fetch(url)
@@ -35,7 +36,7 @@ const setAllCategory = (categorys) =>{
         
     }
     const displayNews = (data,length) =>{
-      
+      //console.log(name);
       const newsContainer = document.getElementById('news-container');
       newsContainer.innerHTML = '';
       const found = document.getElementById('found');
@@ -53,21 +54,27 @@ const setAllCategory = (categorys) =>{
       newsDiv.classList.add('col');
       newsDiv.innerHTML = `
      <div class="card">
-     <img src="${news.image_url}" class="card-img-top" alt="...">
+     <img src="${news.thumbnail_url}" class="card-img-top" alt="...">
      <div class="card-body">
      <h5 class="card-title">${news.title}</h5>
      <p class="card-text">${news.details.slice(0,200)}...</div>
-     <div class="d-flex">
-     <img src="${news.author.img ? news.author.img : 'No Author image'}" class="p-2 w-25 rounded-circle">
-     <div>
+     <div class="d-flex align-items-center">
+     <img src="${news.author.img ? news.author.img : 'No Author image'}" class="p-1 w-25 rounded-circle">
+     <div class="text-center">
      <h1 class="h4">${news.author.name ? news.author.name : 'No author'}</h1>
      <p>${news.author.published_date ? news.author.published_date : 'No Publish Date'}</p>
      </div>
-     <p class="mt-5"><i class="fa-solid fa-eye"></i>${news.total_view ? news.total_view : 'No View' }</p>
-     <button onclick="detailNews('${news._id}')" href="#" class="me-1 mb-2 btn bg-secondary text-white w-50 h-25 text-center my-auto" data-bs-toggle="modal" data-bs-target="#exampleModal">Show Details</button>
-     </div>
-     
+     <p class="ms-4"><i class="fa-solid fa-eye me-2"></i>${news.total_view ? news.total_view : 'No View' }M</p>
+     <button onclick="detailNews('${news._id}')" type="button" class="mx-auto me-2 btn btn-secondary"  data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-arrow-right"></i></button>
     </div>
+ 
+    
+    
+    
+  
+    
+     
+  
    `;
       newsContainer.appendChild(newsDiv); 
        }
@@ -106,7 +113,7 @@ const displayPhoneDetails = (data) =>{
      <p>${data.details}</p>
      <h4 class="text-muted">Author Name : ${data.author.name ? data.author.name : 'No author'}</h4>
      <p class="text-muted">Release Date : ${data.author.published_date ? data.author.published_date : 'No Publish Date'}</p>
- 
+     <p class="text-muted">Views : ${data.total_view ? data.total_view : 'No View' }M</p>
   `
   
   
